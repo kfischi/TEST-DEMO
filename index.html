@@ -1,246 +1,154 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  ArrowDownToLine,
-  Download,
-  Sparkles,
-  ShieldCheck,
-  Wand2,
-  Users,
-  PlayCircle,
-  Menu,
-  MessageSquare,
-  BookOpen
-} from "lucide-react";
-import { motion } from "framer-motion";
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>אתר דמו מקצועי - WebMaster Pro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* אנימציה פשוטה לfade-in */
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-[Poppins],sans-serif selection:bg-orange-300 selection:text-white">
 
-export default function MultiBrawlHomepage() {
-  return (
-    <div>
-      {/* Header */}
-      <header className="bg-white shadow-md py-4 fixed top-0 w-full z-50">
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <div className="text-2xl font-bold text-purple-700">Multi Brawl</div>
-          <nav className="hidden md:flex gap-6 text-gray-700 font-medium">
-            <a href="#" className="hover:text-purple-600">Home</a>
-            <a href="#" className="hover:text-purple-600">Features</a>
-            <a href="#" className="hover:text-purple-600">Download</a>
-            <a href="#" className="hover:text-purple-600">Community</a>
-          </nav>
-          <Button variant="ghost" className="md:hidden">
-            <Menu className="w-6 h-6" />
-          </Button>
-        </div>
-      </header>
+  <!-- כותרת עליונה + ניווט -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <nav class="container mx-auto flex items-center justify-between p-4">
+      <a href="#home" class="text-3xl font-extrabold text-blue-700">WebMaster<span class="text-orange-500">Pro</span></a>
+      <ul class="hidden md:flex gap-10 text-lg font-semibold">
+        <li><a href="#home" class="hover:text-orange-500 transition">בית</a></li>
+        <li><a href="#about" class="hover:text-orange-500 transition">אודות</a></li>
+        <li><a href="#services" class="hover:text-orange-500 transition">שירותים</a></li>
+        <li><a href="#testimonials" class="hover:text-orange-500 transition">המלצות</a></li>
+        <li><a href="#contact" class="hover:text-orange-500 transition">צור קשר</a></li>
+      </ul>
+      <!-- כפתור המבורגר למובייל -->
+      <button id="menuBtn" class="md:hidden text-blue-700 focus:outline-none" aria-label="תפריט">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </nav>
 
-      <main className="pt-24">
-        {/* Hero */}
-        <section className="bg-gradient-to-br from-purple-700 via-pink-600 to-yellow-500 text-white py-28 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-20 z-0">
-            <video
-              src="https://assets.mixkit.co/videos/preview/mixkit-colorful-abstract-gradient-background-996-large.mp4"
-              autoPlay
-              muted
-              loop
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <div className="container relative z-10 text-center max-w-3xl mx-auto px-4">
-            <h1 className="text-5xl font-extrabold leading-tight mb-4 drop-shadow-xl">
-              Multi Brawl Pro
-            </h1>
-            <p className="text-lg md:text-xl mb-8 text-white/90">
-              The ultimate Brawl Stars private server experience – Mods, Custom Brawlers,
-              New Skins & Events – all in one!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-purple-700 hover:bg-purple-200 font-semibold shadow-lg">
-                <Download className="mr-2" /> Download APK
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="text-white border-white hover:bg-white/10">
-                <Sparkles className="mr-2" /> Learn More
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Features */}
-        <section className="py-24 bg-white text-gray-800">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-extrabold mb-4">Why Multi Brawl?</h2>
-              <p className="text-lg text-gray-600">
-                Experience exclusive features not found in the original Brawl Stars.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="text-center p-6 shadow-xl hover:shadow-2xl transition-all">
-                <CardContent>
-                  <Wand2 className="w-12 h-12 mx-auto mb-4 text-purple-600" />
-                  <h3 className="text-xl font-semibold mb-2">Custom Brawlers</h3>
-                  <p className="text-gray-600">Play with unique characters and abilities not available in the official game.</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center p-6 shadow-xl hover:shadow-2xl transition-all">
-                <CardContent>
-                  <ShieldCheck className="w-12 h-12 mx-auto mb-4 text-green-600" />
-                  <h3 className="text-xl font-semibold mb-2">Safe Private Server</h3>
-                  <p className="text-gray-600">Fully sandboxed experience with no risk to your real account.</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center p-6 shadow-xl hover:shadow-2xl transition-all">
-                <CardContent>
-                  <Users className="w-12 h-12 mx-auto mb-4 text-pink-600" />
-                  <h3 className="text-xl font-semibold mb-2">Active Community</h3>
-                  <p className="text-gray-600">Join thousands of players sharing mods, ideas, and epic matches.</p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Gameplay Preview */}
-        <section className="py-24 bg-gray-100">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-extrabold mb-4">Gameplay Preview</h2>
-              <p className="text-lg text-gray-600">See Multi Brawl in action with high-quality previews and cinematic battles.</p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="rounded-xl overflow-hidden shadow-lg">
-                <video
-                  controls
-                  className="w-full h-auto rounded-xl"
-                  poster="https://i.ytimg.com/vi/GzMNq56uWv8/maxresdefault.jpg"
-                  src="https://cdn.videvo.net/videvo_files/video/free/2022-01/small_watermarked/220107_01_BattleGame_4k_009_preview.webm">
-                  Sorry, your browser doesn't support embedded videos.
-                </video>
-              </div>
-              <div className="rounded-xl overflow-hidden shadow-lg">
-                <img
-                  src="https://cdn.dribbble.com/users/25514/screenshots/18259163/media/3890c03ad9a7dbe458842f3f899566a6.gif"
-                  alt="Multi Brawl Gameplay GIF"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="py-24 bg-white text-gray-800">
-          <div className="container mx-auto max-w-5xl px-4 text-center mb-16">
-            <h2 className="text-4xl font-extrabold">What Players Say</h2>
-            <p className="text-lg text-gray-600">שמע מהקהילה על החוויה ב‑Multi Brawl.</p>
-          </div>
-          <div className="container mx-auto px-4 max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                text: "זו חוויה אחרת – משחק עם חברים, תוספות שלא היו לי באף מקום אחר!",
-                author: "דן, שחקן ותיק",
-              },
-              {
-                text: "Custom Brawlers הם ה־פיצ'ר הכי מגניב שראיתי.",
-                author: "נועה, יוצר תוכן",
-              },
-              {
-                text: "השרת יציב, מהיר ועם תמיכה קהילתית מצוינת.",
-                author: "אבי, מפתח משחקים",
-              },
-            ].map((t, i) => (
-              <Card key={i} className="p-6 shadow-lg hover:shadow-xl transition-all">
-                <CardContent>
-                  <MessageSquare className="w-10 h-10 mx-auto mb-4 text-indigo-600" />
-                  <p className="text-gray-700 mb-4">&ldquo;{t.text}&rdquo;</p>
-                  <h4 className="font-semibold">{t.author}</h4>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Articles */}
-        <section className="py-24 bg-gray-100 text-gray-800">
-          <div className="container mx-auto max-w-5xl px-4 text-center mb-16">
-            <h2 className="text-4xl font-extrabold">Latest Articles</h2>
-            <p className="text-lg text-gray-600">לימוד, מדריכים, קהילת משתמשים ותוכן מקצועי.</p>
-          </div>
-          <div className="container mx-auto max-w-6xl px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "How to Install Multi Brawl Pro",
-                desc: "מדריך שלב–אחר–שלב להתקנה על Android.",
-                img: "https://source.unsplash.com/random/400x300?android,game",
-                link: "#",
-              },
-              {
-                title: "Top 5 Custom Brawlers to Try",
-                desc: "הכירו את הדמויות המגניבות ביותר לנסות עכשיו.",
-                img: "https://source.unsplash.com/random/400x300?gaming,avatar",
-                link: "#",
-              },
-              {
-                title: "Building a Safe Private Server",
-                desc: "איך לשחק באופן בטוח ולשמור על חשבונך.",
-                img: "https://source.unsplash.com/random/400x300?server,security",
-                link: "#",
-              },
-            ].map((a, i) => (
-              <Card key={i} className="shadow-lg hover:shadow-xl transition-all overflow-hidden">
-                <img src={a.img} alt={a.title} className="w-full h-48 object-cover" />
-                <CardContent>
-                  <h3 className="text-xl font-semibold mb-2">{a.title}</h3>
-                  <p className="text-gray-600 mb-4">{a.desc}</p>
-                  <Button variant="link" size="sm">
-                    <BookOpen className="mr-2" /> Read More
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Call to Action */}
-        <section className="py-16 bg-purple-700 text-white text-center">
-          <h2 className="text-3xl font-extrabold mb-4">Ready to join the battle?</h2>
-          <Button size="lg" className="bg-white text-purple-700 shadow-lg">
-            <Download className="mr-2" /> Download Multi Brawl Pro
-          </Button>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-8">
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h4 className="font-semibold text-white mb-4">Multi Brawl</h4>
-            <ul>
-              <li><a href="#" className="hover:text-white">Home</a></li>
-              <li><a href="#" className="hover:text-white">Features</a></li>
-              <li><a href="#" className="hover:text-white">Download</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold text-white mb-4">Community</h4>
-            <ul>
-              <li><a href="#" className="hover:text-white">Forum</a></li>
-              <li><a href="#" className="hover:text-white">Discord</a></li>
-              <li><a href="#" className="hover:text-white">Reddit</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold text-white mb-4">Contact</h4>
-            <p>contact@multibrawlpro.com</p>
-            <p>© {new Date().getFullYear()} Multi Brawl Pro. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+    <!-- תפריט מובייל -->
+    <div id="mobileMenu" class="hidden bg-white border-t border-gray-200 md:hidden">
+      <ul class="flex flex-col text-center text-lg font-semibold space-y-3 py-4">
+        <li><a href="#home" class="block hover:text-orange-500 transition">בית</a></li>
+        <li><a href="#about" class="block hover:text-orange-500 transition">אודות</a></li>
+        <li><a href="#services" class="block hover:text-orange-500 transition">שירותים</a></li>
+        <li><a href="#testimonials" class="block hover:text-orange-500 transition">המלצות</a></li>
+        <li><a href="#contact" class="block hover:text-orange-500 transition">צור קשר</a></li>
+      </ul>
     </div>
-  );
-}
+  </header>
+
+  <!-- סקשן בית -->
+  <section id="home" class="container mx-auto px-6 md:px-12 py-20 text-center fade-in">
+    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+      ברוכים הבאים ל<span class="text-blue-700">WebMaster</span><span class="text-orange-500">Pro</span>
+    </h1>
+    <p class="max-w-3xl mx-auto text-xl md:text-2xl text-gray-700 mb-10">
+      הפתרון המושלם לבניית אתרים לעסקים קטנים עם עיצוב מותאם אישית, חוויית משתמש מעולה, ויכולות מתקדמות.
+    </p>
+    <a href="#contact" class="inline-block bg-orange-500 text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-orange-600 transition">
+      צרו קשר עכשיו
+    </a>
+  </section>
+
+  <!-- סקשן אודות -->
+  <section id="about" class="bg-white py-16 fade-in">
+    <div class="container mx-auto px-6 md:px-12 max-w-5xl text-center">
+      <h2 class="text-4xl font-bold mb-8 text-blue-800">אודותינו</h2>
+      <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+        אנחנו מומחים בבניית אתרים עם דגש על עיצוב נקי, מהירות וידידותיות למשתמש. השירות שלנו כולל תבניות מוכנות, עורך מתקדם, ושירות אישי שמתאים בדיוק לצרכים של העסק שלך.
+      </p>
+    </div>
+  </section>
+
+  <!-- סקשן שירותים -->
+  <section id="services" class="container mx-auto px-6 md:px-12 py-16 fade-in">
+    <h2 class="text-4xl font-bold mb-12 text-center text-blue-800">השירותים שלנו</h2>
+    <div class="grid gap-10 md:grid-cols-3 max-w-6xl mx-auto text-center">
+      <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="בניית אתרים" class="w-24 h-24 mx-auto mb-6 rounded-full object-cover shadow-md" loading="lazy" />
+        <h3 class="text-2xl font-semibold mb-4">בניית אתרים</h3>
+        <p class="text-gray-700">אתרים רספונסיביים עם עיצוב ייחודי ואופטימיזציה מלאה למהירות ומנועי חיפוש.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition">
+        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=400&q=80" alt="תחזוקה ושדרוג" class="w-24 h-24 mx-auto mb-6 rounded-full object-cover shadow-md" loading="lazy" />
+        <h3 class="text-2xl font-semibold mb-4">תחזוקה ושדרוג</h3>
+        <p class="text-gray-700">שדרוגים שוטפים, אבטחה, ושיפור ביצועים, כך שהאתר שלך תמיד יהיה מעודכן ומהיר.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition">
+        <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?auto=format&fit=crop&w=400&q=80" alt="ייעוץ דיגיטלי" class="w-24 h-24 mx-auto mb-6 rounded-full object-cover shadow-md" loading="lazy" />
+        <h3 class="text-2xl font-semibold mb-4">ייעוץ דיגיטלי</h3>
+        <p class="text-gray-700">אסטרטגיה דיגיטלית מתקדמת, שיווק ברשתות חברתיות וניהול קמפיינים ממוקדים.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- סקשן המלצות -->
+  <section id="testimonials" class="bg-blue-50 py-16 fade-in">
+    <div class="container mx-auto px-6 md:px-12 max-w-5xl text-center">
+      <h2 class="text-4xl font-bold mb-12 text-blue-800">המלצות</h2>
+      <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-10">
+        <blockquote class="bg-white rounded-xl shadow-lg p-8">
+          <p class="text-gray-800 italic mb-6">"WebMaster Pro בניית האתר שלנו הייתה מקצועית ומהירה, התוצאה מעל ומעבר לציפיות!"</p>
+          <footer class="text-sm text-gray-600">— רוני כהן, בעל עסק</footer>
+        </blockquote>
+        <blockquote class="bg-white rounded-xl shadow-lg p-8">
+          <p class="text-gray-800 italic mb-6">"השירות האישי והתמיכה הטכנית עזרו לנו לצמוח ברשת בצורה משמעותית."</p>
+          <footer class="text-sm text-gray-600">— מיכל לוי, יזמת</footer>
+        </blockquote>
+        <blockquote class="bg-white rounded-xl shadow-lg p-8">
+          <p class="text-gray-800 italic mb-6">"אני ממליץ בחום לכל מי שרוצה אתר מקצועי ואיכותי במחיר משתלם."</p>
+          <footer class="text-sm text-gray-600">— דוד שמש, מנהל פרויקטים</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- סקשן צור קשר -->
+  <section id="contact" class="container mx-auto px-6 md:px-12 py-20 fade-in">
+    <h2 class="text-4xl font-bold mb-10 text-center text-blue-800">צור קשר</h2>
+    <form class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-10 space-y-6" onsubmit="alert('תודה שפנית אלינו! נחזור אליך בהקדם.'); return false;">
+      <div>
+        <label for="name" class="block mb-2 font-semibold">שם מלא</label>
+        <input id="name" type="text" required placeholder="הזן את שמך המלא" class="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+      </div>
+      <div>
+        <label for="email" class="block mb-2 font-semibold">אימייל</label>
+        <input id="email" type="email" required placeholder="example@mail.com" class="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+      </div>
+      <div>
+        <label for="message" class="block mb-2 font-semibold">הודעה</label>
+        <textarea id="message" rows="5" required placeholder="מה תרצה לספר לנו?" class="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400 resize-none"></textarea>
+      </div>
+      <button type="submit" class="w-full bg-orange-500 text-white text-lg font-bold py-4 rounded-lg hover:bg-orange-600 transition">שלח</button>
+    </form>
+  </section>
+
+  <!-- פוטר -->
+  <footer class="bg-white border-t border-gray-300 py-6 text-center text-gray-500 text-sm">
+    &copy; 2025 WebMaster Pro - כל הזכויות שמורות
+  </footer>
+
+  <script>
+    // סקריפט לפתיחת תפריט מובייל
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
