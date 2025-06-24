@@ -3,151 +3,421 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>אתר דמו מקצועי - WebMaster Pro</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Multibrawn - הפתרון המושלם לעסק שלך</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&family=Assistant:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    /* אנימציה פשוטה לfade-in */
-    .fade-in {
-      animation: fadeIn 1s ease forwards;
-      opacity: 0;
+    /* Reset בסיסי */
+    * {
+      box-sizing: border-box;
     }
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    body {
+      margin: 0;
+      font-family: 'Heebo', sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #ef4444;
+    }
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(255 255 255 / 0.9);
+      backdrop-filter: saturate(180%) blur(10px);
+      box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+      z-index: 1000;
+      transition: background 0.3s ease;
+    }
+    header.scrolled {
+      background: #2563eb;
+      color: white;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.15);
+    }
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #2563eb;
+      user-select: none;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+    }
+    header.scrolled .logo {
+      color: white;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      display: inline-block;
+      color: inherit;
+    }
+    nav ul li a:hover {
+      color: #ef4444;
+    }
+    nav .menu-toggle {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      width: 24px;
+      height: 18px;
+      justify-content: center;
+    }
+    nav .menu-toggle span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: #2563eb;
+      border-radius: 3px;
+      transition: background 0.3s ease;
+    }
+    header.scrolled .menu-toggle span {
+      background: white;
+    }
+    /* מובייל */
+    @media (max-width: 768px) {
+      nav ul {
+        position: fixed;
+        top: 64px;
+        right: 0;
+        width: 250px;
+        height: calc(100vh - 64px);
+        background: #2563eb;
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        box-shadow: -2px 0 8px rgb(0 0 0 / 0.2);
+        border-radius: 0 0 0 10px;
+      }
+      nav ul.active {
+        transform: translateX(0);
+      }
+      nav ul li a {
+        color: white;
+        font-size: 1.2rem;
+      }
+      nav .menu-toggle {
+        display: flex;
+      }
+    }
+    /* סקשן גיבור */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      text-align: center;
+      flex-direction: column;
+    }
+    #hero h1 {
+      font-size: 3.5rem;
+      max-width: 700px;
+      margin: 0 auto 1rem;
+      font-weight: 700;
+      line-height: 1.1;
+      text-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+    }
+    #hero p {
+      font-size: 1.25rem;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.15);
+    }
+    #hero .btn {
+      background: #ef4444;
+      color: white;
+      padding: 1rem 3rem;
+      font-weight: 700;
+      border-radius: 50px;
+      box-shadow: 0 6px 12px rgb(239 68 68 / 0.6);
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    #hero .btn:hover {
+      background: #dc2626;
+      box-shadow: 0 8px 20px rgb(220 38 38 / 0.7);
+    }
+    /* סקשנים */
+    section {
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 0 1rem;
+    }
+    h2.section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      color: #2563eb;
+      text-align: center;
+    }
+    p.section-text {
+      max-width: 650px;
+      margin: 0 auto 3rem;
+      font-size: 1.125rem;
+      color: #374151;
+      line-height: 1.7;
+      text-align: center;
+    }
+    /* כרטיסי שירותים */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 2.5rem;
+    }
+    .service-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgb(0 0 0 / 0.15);
+    }
+    .service-icon {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(1px 2px 2px rgb(0 0 0 / 0.05));
+    }
+    .service-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #2563eb;
+    }
+    .service-desc {
+      font-size: 1rem;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+    /* המלצות */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+      gap: 2rem;
+    }
+    .testimonial-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.08);
+      font-style: italic;
+      position: relative;
+      color: #374151;
+    }
+    .testimonial-card::before {
+      content: "“";
+      font-size: 4rem;
+      color: #2563eb;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      opacity: 0.15;
+    }
+    .testimonial-author {
+      margin-top: 1.5rem;
+      font-weight: 700;
+      color: #111827;
+      font-style: normal;
+      text-align: right;
+    }
+    /* צור קשר */
+    form.contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem 2.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 25px rgb(0 0 0 / 0.1);
+    }
+    form.contact-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #2563eb;
+    }
+    form.contact-form input,
+    form.contact-form textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #d1d5db;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      transition: border-color 0.3s ease;
+      font-family: inherit;
+      resize: vertical;
+    }
+    form.contact-form input:focus,
+    form.contact-form textarea:focus {
+      outline: none;
+      border-color: #ef4444;
+      box-shadow: 0 0 10px rgb(239 68 68 / 0.5);
+    }
+    form.contact-form button {
+      background: #ef4444;
+      border: none;
+      color: white;
+      padding: 1rem 3rem;
+      font-size: 1.125rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 6px 12px rgb(239 68 68 / 0.6);
+    }
+    form.contact-form button:hover {
+      background: #dc2626;
+      box-shadow: 0 8px 20px rgb(220 38 38 / 0.7);
+    }
+    /* פוטר */
+    footer {
+      background: #1f2937;
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
     }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-[Poppins],sans-serif selection:bg-orange-300 selection:text-white">
+<body>
 
-  <!-- כותרת עליונה + ניווט -->
-  <header class="bg-white shadow sticky top-0 z-50">
-    <nav class="container mx-auto flex items-center justify-between p-4">
-      <a href="#home" class="text-3xl font-extrabold text-blue-700">WebMaster<span class="text-orange-500">Pro</span></a>
-      <ul class="hidden md:flex gap-10 text-lg font-semibold">
-        <li><a href="#home" class="hover:text-orange-500 transition">בית</a></li>
-        <li><a href="#about" class="hover:text-orange-500 transition">אודות</a></li>
-        <li><a href="#services" class="hover:text-orange-500 transition">שירותים</a></li>
-        <li><a href="#testimonials" class="hover:text-orange-500 transition">המלצות</a></li>
-        <li><a href="#contact" class="hover:text-orange-500 transition">צור קשר</a></li>
+  <header id="header">
+    <nav>
+      <div class="logo" tabindex="0" role="link" aria-label="דף הבית">Multibrawn</div>
+      <ul id="nav-links">
+        <li><a href="#hero" tabindex="0">בית</a></li>
+        <li><a href="#services" tabindex="0">שירותים</a></li>
+        <li><a href="#testimonials" tabindex="0">המלצות</a></li>
+        <li><a href="#contact" tabindex="0">צור קשר</a></li>
       </ul>
-      <!-- כפתור המבורגר למובייל -->
-      <button id="menuBtn" class="md:hidden text-blue-700 focus:outline-none" aria-label="תפריט">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
+      <div class="menu-toggle" id="menu-toggle" aria-label="פתח תפריט" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </nav>
-
-    <!-- תפריט מובייל -->
-    <div id="mobileMenu" class="hidden bg-white border-t border-gray-200 md:hidden">
-      <ul class="flex flex-col text-center text-lg font-semibold space-y-3 py-4">
-        <li><a href="#home" class="block hover:text-orange-500 transition">בית</a></li>
-        <li><a href="#about" class="block hover:text-orange-500 transition">אודות</a></li>
-        <li><a href="#services" class="block hover:text-orange-500 transition">שירותים</a></li>
-        <li><a href="#testimonials" class="block hover:text-orange-500 transition">המלצות</a></li>
-        <li><a href="#contact" class="block hover:text-orange-500 transition">צור קשר</a></li>
-      </ul>
-    </div>
   </header>
 
-  <!-- סקשן בית -->
-  <section id="home" class="container mx-auto px-6 md:px-12 py-20 text-center fade-in">
-    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-      ברוכים הבאים ל<span class="text-blue-700">WebMaster</span><span class="text-orange-500">Pro</span>
-    </h1>
-    <p class="max-w-3xl mx-auto text-xl md:text-2xl text-gray-700 mb-10">
-      הפתרון המושלם לבניית אתרים לעסקים קטנים עם עיצוב מותאם אישית, חוויית משתמש מעולה, ויכולות מתקדמות.
-    </p>
-    <a href="#contact" class="inline-block bg-orange-500 text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-orange-600 transition">
-      צרו קשר עכשיו
-    </a>
+  <section id="hero" role="banner" aria-label="סקשן ראשי">
+    <h1>הביאו את העסק שלכם<br>לרמה הבאה</h1>
+    <p>פתרונות דיגיטליים מתקדמים, אתרים ומיתוג שיעשו לכם את ההבדל בשוק התחרותי.</p>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});" aria-label="צור קשר">התחילו עכשיו</button>
   </section>
 
-  <!-- סקשן אודות -->
-  <section id="about" class="bg-white py-16 fade-in">
-    <div class="container mx-auto px-6 md:px-12 max-w-5xl text-center">
-      <h2 class="text-4xl font-bold mb-8 text-blue-800">אודותינו</h2>
-      <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
-        אנחנו מומחים בבניית אתרים עם דגש על עיצוב נקי, מהירות וידידותיות למשתמש. השירות שלנו כולל תבניות מוכנות, עורך מתקדם, ושירות אישי שמתאים בדיוק לצרכים של העסק שלך.
-      </p>
+  <section id="services" aria-labelledby="services-title">
+    <h2 class="section-title" id="services-title">השירותים שלנו</h2>
+    <p class="section-text">אנחנו מציעים מגוון פתרונות מקצועיים עבור כל עסק, בהתאמה אישית.</p>
+    <div class="services-grid" role="list">
+      <article class="service-card" role="listitem" tabindex="0">
+        <img class="service-icon" src="https://img.icons8.com/ios-filled/100/2563eb/web.png" alt="בניית אתרים" loading="lazy" />
+        <h3 class="service-title">בניית אתרים</h3>
+        <p class="service-desc">אתרים רספונסיביים עם עיצוב ייחודי ואופטימיזציה מלאה למהירות ומנועי חיפוש.</p>
+      </article>
+      <article class="service-card" role="listitem" tabindex="0">
+        <img class="service-icon" src="https://img.icons8.com/ios-filled/100/2563eb/maintenance.png" alt="תחזוקה ושדרוג" loading="lazy" />
+        <h3 class="service-title">תחזוקה ושדרוג</h3>
+        <p class="service-desc">שדרוגים שוטפים, אבטחה, ושיפור ביצועים, כך שהאתר שלך תמיד יהיה מעודכן ומהיר.</p>
+      </article>
+      <article class="service-card" role="listitem" tabindex="0">
+        <img class="service-icon" src="https://img.icons8.com/ios-filled/100/2563eb/consulting.png" alt="ייעוץ דיגיטלי" loading="lazy" />
+        <h3 class="service-title">ייעוץ דיגיטלי</h3>
+        <p class="service-desc">אסטרטגיה דיגיטלית מתקדמת, שיווק ברשתות חברתיות וניהול קמפיינים ממוקדים.</p>
+      </article>
     </div>
   </section>
 
-  <!-- סקשן שירותים -->
-  <section id="services" class="container mx-auto px-6 md:px-12 py-16 fade-in">
-    <h2 class="text-4xl font-bold mb-12 text-center text-blue-800">השירותים שלנו</h2>
-    <div class="grid gap-10 md:grid-cols-3 max-w-6xl mx-auto text-center">
-      <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="בניית אתרים" class="w-24 h-24 mx-auto mb-6 rounded-full object-cover shadow-md" loading="lazy" />
-        <h3 class="text-2xl font-semibold mb-4">בניית אתרים</h3>
-        <p class="text-gray-700">אתרים רספונסיביים עם עיצוב ייחודי ואופטימיזציה מלאה למהירות ומנועי חיפוש.</p>
-      </div>
-      <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition">
-        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=400&q=80" alt="תחזוקה ושדרוג" class="w-24 h-24 mx-auto mb-6 rounded-full object-cover shadow-md" loading="lazy" />
-        <h3 class="text-2xl font-semibold mb-4">תחזוקה ושדרוג</h3>
-        <p class="text-gray-700">שדרוגים שוטפים, אבטחה, ושיפור ביצועים, כך שהאתר שלך תמיד יהיה מעודכן ומהיר.</p>
-      </div>
-      <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition">
-        <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?auto=format&fit=crop&w=400&q=80" alt="ייעוץ דיגיטלי" class="w-24 h-24 mx-auto mb-6 rounded-full object-cover shadow-md" loading="lazy" />
-        <h3 class="text-2xl font-semibold mb-4">ייעוץ דיגיטלי</h3>
-        <p class="text-gray-700">אסטרטגיה דיגיטלית מתקדמת, שיווק ברשתות חברתיות וניהול קמפיינים ממוקדים.</p>
-      </div>
+  <section id="testimonials" aria-labelledby="testimonials-title" style="margin-bottom: 4rem;">
+    <h2 class="section-title" id="testimonials-title">המלצות</h2>
+    <div class="testimonials-grid" role="list">
+      <blockquote class="testimonial-card" role="listitem" tabindex="0">
+        "Multibrawn הפכה את האתר שלנו ליותר ממקצועי, השירות היה אישי ומהיר!"
+        <footer class="testimonial-author">— רוני כהן</footer>
+      </blockquote>
+      <blockquote class="testimonial-card" role="listitem" tabindex="0">
+        "הצוות התמקד בצרכים שלנו ויצר אתר מושלם לעסק הקטן שלנו."
+        <footer class="testimonial-author">— מיכל לוי</footer>
+      </blockquote>
+      <blockquote class="testimonial-card" role="listitem" tabindex="0">
+        "ממליץ בחום, מקצוענים אמיתיים עם שירות מדהים."
+        <footer class="testimonial-author">— דוד שמש</footer>
+      </blockquote>
     </div>
   </section>
 
-  <!-- סקשן המלצות -->
-  <section id="testimonials" class="bg-blue-50 py-16 fade-in">
-    <div class="container mx-auto px-6 md:px-12 max-w-5xl text-center">
-      <h2 class="text-4xl font-bold mb-12 text-blue-800">המלצות</h2>
-      <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-10">
-        <blockquote class="bg-white rounded-xl shadow-lg p-8">
-          <p class="text-gray-800 italic mb-6">"WebMaster Pro בניית האתר שלנו הייתה מקצועית ומהירה, התוצאה מעל ומעבר לציפיות!"</p>
-          <footer class="text-sm text-gray-600">— רוני כהן, בעל עסק</footer>
-        </blockquote>
-        <blockquote class="bg-white rounded-xl shadow-lg p-8">
-          <p class="text-gray-800 italic mb-6">"השירות האישי והתמיכה הטכנית עזרו לנו לצמוח ברשת בצורה משמעותית."</p>
-          <footer class="text-sm text-gray-600">— מיכל לוי, יזמת</footer>
-        </blockquote>
-        <blockquote class="bg-white rounded-xl shadow-lg p-8">
-          <p class="text-gray-800 italic mb-6">"אני ממליץ בחום לכל מי שרוצה אתר מקצועי ואיכותי במחיר משתלם."</p>
-          <footer class="text-sm text-gray-600">— דוד שמש, מנהל פרויקטים</footer>
-        </blockquote>
-      </div>
-    </div>
-  </section>
-
-  <!-- סקשן צור קשר -->
-  <section id="contact" class="container mx-auto px-6 md:px-12 py-20 fade-in">
-    <h2 class="text-4xl font-bold mb-10 text-center text-blue-800">צור קשר</h2>
-    <form class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-10 space-y-6" onsubmit="alert('תודה שפנית אלינו! נחזור אליך בהקדם.'); return false;">
-      <div>
-        <label for="name" class="block mb-2 font-semibold">שם מלא</label>
-        <input id="name" type="text" required placeholder="הזן את שמך המלא" class="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />
-      </div>
-      <div>
-        <label for="email" class="block mb-2 font-semibold">אימייל</label>
-        <input id="email" type="email" required placeholder="example@mail.com" class="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />
-      </div>
-      <div>
-        <label for="message" class="block mb-2 font-semibold">הודעה</label>
-        <textarea id="message" rows="5" required placeholder="מה תרצה לספר לנו?" class="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400 resize-none"></textarea>
-      </div>
-      <button type="submit" class="w-full bg-orange-500 text-white text-lg font-bold py-4 rounded-lg hover:bg-orange-600 transition">שלח</button>
+  <section id="contact" aria-labelledby="contact-title" style="margin-bottom: 6rem;">
+    <h2 class="section-title" id="contact-title">צור קשר</h2>
+    <form class="contact-form" aria-label="טופס יצירת קשר" onsubmit="alert('תודה שפנית אלינו! נחזור אליך בהקדם.'); return false;">
+      <label for="name">שם מלא</label>
+      <input type="text" id="name" name="name" required placeholder="הזן את שמך המלא" />
+      <label for="email">אימייל</label>
+      <input type="email" id="email" name="email" required placeholder="example@mail.com" />
+      <label for="message">הודעה</label>
+      <textarea id="message" name="message" rows="5" required placeholder="מה תרצה לספר לנו?"></textarea>
+      <button type="submit" aria-label="שלח טופס">שלח</button>
     </form>
   </section>
 
-  <!-- פוטר -->
-  <footer class="bg-white border-t border-gray-300 py-6 text-center text-gray-500 text-sm">
-    &copy; 2025 WebMaster Pro - כל הזכויות שמורות
+  <footer>
+    &copy; 2025 Multibrawn - כל הזכויות שמורות
   </footer>
 
   <script>
-    // סקריפט לפתיחת תפריט מובייל
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
+    // ניווט מובייל
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
 
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // הוספת מחלקת scroll לheader בגלילה
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if(window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     });
   </script>
 </body>
