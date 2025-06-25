@@ -1,649 +1,1386 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>מולטיבראון - נופש ואירועים בלתי נשכחים</title>
-  <style>
-    /* Reset & Base */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: "Arial", sans-serif;
-      background: linear-gradient(to bottom, #d6f0ef, #e6fafb);
-      color: #06494d;
-      min-height: 100vh;
-      line-height: 1.6;
-      direction: rtl;
-    }
-    a {
-      text-decoration: none;
-      color: #05636b;
-    }
-    a:hover {
-      color: #033d40;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebMaster Pro - דוח מנהלים מקצועי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #059669;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --info: #0891b2;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-dark: #1e293b;
+            --text-medium: #64748b;
+            --text-light: #94a3b8;
+            --border: #e2e8f0;
+            --border-strong: #cbd5e1;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-strong: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --gradient-main: linear-gradient(135deg, #2563eb 0%, #059669 100%);
+            --gradient-warm: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
+        }
 
-    /* Container */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1rem 1.5rem 3rem;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Navbar */
-    nav {
-      background: rgba(2, 79, 86, 0.85);
-      color: white;
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.5rem;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgb(0 0 0 / 0.15);
-    }
-    nav .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-      user-select: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    nav .logo svg {
-      fill: #3dd4cc;
-      width: 28px;
-      height: 28px;
-    }
-    nav ul {
-      display: flex;
-      gap: 1.7rem;
-      list-style: none;
-    }
-    nav ul li {
-      cursor: pointer;
-      font-weight: 600;
-      padding: 0.3rem 0.5rem;
-      border-radius: 5px;
-      transition: background-color 0.25s ease, color 0.25s ease;
-      user-select: none;
-    }
-    nav ul li:hover,
-    nav ul li.active {
-      background-color: #3dd4cc;
-      color: #004040;
-    }
+        body {
+            font-family: 'Assistant', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 2rem;
+        }
 
-    /* Sections common */
-    section {
-      padding: 90px 0 60px;
-      min-height: calc(100vh - 60px);
-    }
-    h1, h2 {
-      font-weight: 800;
-      margin-bottom: 1rem;
-      color: #004040;
-    }
-    h1 {
-      font-size: 3rem;
-      line-height: 1.2;
-    }
-    h2 {
-      font-size: 2.3rem;
-      text-align: center;
-    }
-    p {
-      max-width: 800px;
-      margin: 0 auto 1.5rem;
-      font-size: 1.15rem;
-      color: #055556dd;
-      text-align: center;
-    }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--bg-card);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            position: relative;
+            overflow: hidden;
+        }
 
-    /* Hero */
-    #home {
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding-top: 120px;
-      padding-bottom: 120px;
-      position: relative;
-    }
-    #home::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(2, 79, 86, 0.65);
-      z-index: 0;
-    }
-    #home > * {
-      position: relative;
-      z-index: 1;
-    }
-    #home h1 {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-    }
-    #home p {
-      font-size: 1.5rem;
-      max-width: 600px;
-      margin-bottom: 2rem;
-      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6);
-    }
-    #home button {
-      background-color: #3dd4cc;
-      color: #004040;
-      border: none;
-      padding: 1rem 3rem;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 5px 15px #3dd4ccaa;
-    }
-    #home button:hover,
-    #home button:focus {
-      background-color: #2bb5a6;
-      outline: none;
-    }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient-main);
+        }
 
-    /* Services */
-    #services .services-grid {
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      margin-top: 2rem;
-    }
-    .service-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgb(0 0 0 / 0.1);
-      transition: box-shadow 0.3s ease;
-      text-align: center;
-    }
-    .service-card:hover {
-      box-shadow: 0 8px 30px rgb(0 0 0 / 0.18);
-    }
-    .service-icon {
-      width: 60px;
-      height: 60px;
-      margin-bottom: 1rem;
-      stroke: #3dd4cc;
-      stroke-width: 2;
-      fill: none;
-    }
-    .service-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #05636b;
-    }
-    .service-desc {
-      color: #055556cc;
-      font-size: 1.05rem;
-    }
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
 
-    /* Testimonials */
-    #testimonials {
-      background: white;
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-    }
-    #testimonials .testimonials-grid {
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      max-width: 960px;
-      margin: 2rem auto 0;
-    }
-    .testimonial-card {
-      background: #e0f7f7;
-      border-radius: 12px;
-      padding: 1.8rem 1.5rem;
-      font-style: italic;
-      color: #034d4d;
-      box-shadow: 0 3px 15px rgb(3 77 77 / 0.15);
-      position: relative;
-      user-select: none;
-    }
-    .testimonial-card::before {
-      content: "“";
-      font-size: 4rem;
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      color: #3dd4cc;
-      font-family: serif;
-      line-height: 1;
-    }
-    .testimonial-author {
-      font-weight: 700;
-      text-align: left;
-      margin-top: 1rem;
-      color: #014040;
-      user-select: text;
-    }
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+        }
 
-    /* Gallery */
-    #gallery .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1rem;
-    }
-    #gallery .gallery-grid img {
-      width: 100%;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      display: block;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      box-shadow: 0 4px 15px rgb(0 0 0 / 0.15);
-    }
-    #gallery .gallery-grid img:hover,
-    #gallery .gallery-grid img:focus {
-      transform: scale(1.05);
-      outline: none;
-      box-shadow: 0 6px 20px rgb(0 0 0 / 0.3);
-    }
+        .header-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
 
-    /* About */
-    #about p {
-      max-width: 700px;
-      margin: 0 auto 1.3rem;
-      font-size: 1.15rem;
-      color: #055556dd;
-      text-align: center;
-      line-height: 1.5;
-    }
+        .header-stat {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
 
-    /* Contact Form */
-    #contact form {
-      max-width: 400px;
-      margin: 0 auto;
-      background: white;
-      padding: 2rem 2.2rem;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgb(0 0 0 / 0.12);
-    }
-    #contact label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-      color: #05636b;
-      user-select: none;
-    }
-    #contact input,
-    #contact textarea {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      margin-bottom: 1.3rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: 2px solid #b0d7d8;
-      resize: vertical;
-      transition: border-color 0.3s ease;
-      font-family: inherit;
-    }
-    #contact input:focus,
-    #contact textarea:focus {
-      border-color: #3dd4cc;
-      outline: none;
-      box-shadow: 0 0 8px #3dd4ccaa;
-    }
-    #contact .error {
-      color: #d34141;
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin-top: -1rem;
-      margin-bottom: 1rem;
-      user-select: none;
-    }
-    #contact button {
-      width: 100%;
-      background-color: #3dd4cc;
-      color: #004040;
-      border: none;
-      padding: 1rem;
-      font-weight: 700;
-      font-size: 1.15rem;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px #3dd4ccaa;
-      transition: background-color 0.3s ease;
-    }
-    #contact button:hover,
-    #contact button:focus {
-      background-color: #2bb5a6;
-      outline: none;
-    }
-    #contact .success-message {
-      background-color: #c6f3f1;
-      color: #04635b;
-      border-radius: 10px;
-      padding: 1rem 1.2rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      text-align: center;
-      user-select: none;
-    }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
 
-    /* Footer */
-    footer {
-      background-color: #024e52;
-      color: white;
-      text-align: center;
-      padding: 1rem 0;
-      font-weight: 600;
-      font-size: 1rem;
-      user-select: none;
-      margin-top: 3rem;
-    }
+        .stat-label {
+            color: var(--text-medium);
+            font-weight: 600;
+            font-size: 1rem;
+        }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      #home h1 {
-        font-size: 2.5rem;
-      }
-      nav ul {
-        display: none;
-      }
-      nav .menu-toggle {
-        display: block;
-        cursor: pointer;
-      }
-    }
+        /* Table Styles */
+        .table-container {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
 
-    /* Mobile menu toggle */
-    .menu-toggle {
-      display: none;
-      font-size: 1.7rem;
-      color: white;
-      user-select: none;
-      background: none;
-      border: none;
-    }
-    .mobile-menu {
-      position: fixed;
-      top: 60px;
-      right: 0;
-      left: 0;
-      background-color: #014040dd;
-      display: none;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1rem 2rem;
-      z-index: 999;
-    }
-    .mobile-menu.active {
-      display: flex;
-    }
-    .mobile-menu button {
-      background: none;
-      border: none;
-      color: white;
-      font-weight: 700;
-      font-size: 1.3rem;
-      cursor: pointer;
-      text-align: right;
-      user-select: none;
-    }
-    .mobile-menu button:hover {
-      color: #3dd4cc;
-    }
-  </style>
+        .table-header {
+            background: var(--gradient-main);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .table-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .table-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: #f8fafc;
+            color: var(--text-dark);
+            font-weight: 700;
+            padding: 1rem;
+            text-align: right;
+            border-bottom: 2px solid var(--border-strong);
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        tr:hover {
+            background: rgba(37, 99, 235, 0.02);
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .status-completed {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .status-progress {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
+        }
+
+        .status-planned {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+        }
+
+        .status-fix {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        /* Priority Badges */
+        .priority-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .priority-5 { color: #dc2626; }
+        .priority-4 { color: #ea580c; }
+        .priority-3 { color: #f59e0b; }
+        .priority-2 { color: #059669; }
+        .priority-1 { color: #64748b; }
+
+        /* Category Icons */
+        .category-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .category-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .medical { background: #2563eb; }
+        .education { background: #059669; }
+        .fitness { background: #dc2626; }
+        .legal { background: #1e40af; }
+        .beauty { background: #ec4899; }
+        .finance { background: #7c3aed; }
+        .tourism { background: #ea580c; }
+        .real-estate { background: #65a30d; }
+
+        /* Price Styling */
+        .price {
+            font-weight: 700;
+            color: var(--success);
+            font-size: 1rem;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .btn-view {
+            background: var(--info);
+            color: white;
+        }
+
+        .btn-edit {
+            background: var(--warning);
+            color: white;
+        }
+
+        .btn-delete {
+            background: var(--error);
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow);
+        }
+
+        /* Technology Stack Table */
+        .tech-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .tech-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .feature-tag {
+            background: #e2e8f0;
+            color: var(--text-dark);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .feature-tag.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .feature-tag.success {
+            background: var(--success);
+            color: white;
+        }
+
+        /* Business Model Tables */
+        .revenue-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .revenue-source {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .revenue-amount {
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .cost-amount {
+            font-weight: 700;
+            color: var(--error);
+        }
+
+        /* Progress Indicators */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-main);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            margin-top: 0.25rem;
+        }
+
+        /* Timeline Styles */
+        .timeline-table td {
+            position: relative;
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .timeline-status {
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-header {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            th, td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.85rem;
+            }
+            
+            .category-cell {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Summary Cards */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-main);
+        }
+
+        .summary-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .key-metric {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--success);
+            margin: 1rem 0;
+        }
+    </style>
 </head>
 <body>
-  <nav>
-    <div class="logo" tabindex="0" role="button" aria-label="לוגו מולטיבראון">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4 2 7-6-4-6 4 2-7L2 9h7l3-7z"/></svg>
-      מולטיבראון
+    <!-- Header -->
+    <div class="header">
+        <h1>WebMaster Pro</h1>
+        <div class="subtitle">דוח מנהלים מקצועי - מצב הפרויקט ינואר 2025</div>
+        
+        <div class="header-stats">
+            <div class="header-stat">
+                <div class="stat-number">11</div>
+                <div class="stat-label">אתרים במערכת</div>
+            </div>
+            <div class="header-stat">
+                <div class="stat-number">8</div>
+                <div class="stat-label">מוכנים לייצור</div>
+            </div>
+            <div class="header-stat">
+                <div class="stat-number">₪25,300</div>
+                <div class="stat-label">ערך פוטנציאלי</div>
+            </div>
+            <div class="header-stat">
+                <div class="stat-number">85%</div>
+                <div class="stat-label">מרווח רווח</div>
+            </div>
+        </div>
     </div>
-    <ul class="nav-links" role="menubar">
-      <li role="none"><button role="menuitem" class="nav-btn active" data-target="home">בית</button></li>
-      <li role="none"><button role="menuitem" class="nav-btn" data-target="gallery">גלריה</button></li>
-      <li role="none"><button role="menuitem" class="nav-btn" data-target="about">אודות</button></li>
-      <li role="none"><button role="menuitem" class="nav-btn" data-target="contact">צור קשר</button></li>
-    </ul>
-    <button class="menu-toggle" aria-label="תפריט נייד">&#9776;</button>
-  </nav>
 
-  <div class="mobile-menu" aria-label="תפריט ניווט נייד" role="menu">
-    <button class="nav-btn" data-target="home">בית</button>
-    <button class="nav-btn" data-target="gallery">גלריה</button>
-    <button class="nav-btn" data-target="about">אודות</button>
-    <button class="nav-btn" data-target="contact">צור קשר</button>
-  </div>
+    <!-- Websites Inventory Table -->
+    <div class="table-container">
+        <div class="table-header">
+            <div>
+                <div class="table-title">
+                    <i class="fas fa-globe"></i>
+                    מלאי אתרים - פירוט מלא
+                </div>
+                <div class="table-subtitle">11 אתרים מקצועיים לפי תחום וביקוש</div>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>תחום</th>
+                        <th>שם האתר</th>
+                        <th>סוג עסק</th>
+                        <th>סטטוס</th>
+                        <th>ביקוש שוק</th>
+                        <th>מחיר</th>
+                        <th>קובץ</th>
+                        <th>התקדמות</th>
+                        <th>פעולות</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="category-cell">
+                                <div class="category-icon medical">
+                                    <i class="fas fa-stethoscope"></i>
+                                </div>
+                                <span>רפואה אסתטית</span>
+                            </div>
+                        </td>
+                        <td><strong>ד"ר מיכל רוזן</strong></td>
+                        <td>מרפאה פרטית</td>
+                        <td><span class="status-badge status-completed">מוכן ✅</span></td>
+                        <td>
+                            <div class="priority-badge priority-5">
+                                ★★★★★ גבוה מאוד
+                            </div>
+                        </td>
+                        <td><span class="price">₪2,800</span></td>
+                        <td><code>dr-michal-rosen.html</code></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-text">100% מושלם</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-view" title="צפייה">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn btn-edit" title="עריכה">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="category-cell">
+                                <div class="category-icon fitness">
+                                    <i class="fas fa-dumbbell"></i>
+                                </div>
+                                <span>כושר ובריאות</span>
+                            </div>
+                        </td>
+                        <td><strong>דני פיט</strong></td>
+                        <td>מאמן כושר אישי</td>
+                        <td><span class="status-badge status-completed">מוכן ✅</span></td>
+                        <td>
+                            <div class="priority-badge priority-4">
+                                ★★★★☆ גבוה
+                            </div>
+                        </td>
+                        <td><span class="price">₪2,200</span></td>
+                        <td><code>fitness-coach.html</code></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-text">100% + מחשבונים</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-view">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn btn-edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="category-cell">
+                                <div class="category-icon fitness">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <span>יוגה ומדיטציה</span>
+                            </div>
+                        </td>
+                        <td><strong>סטודיו אוהם</strong></td>
+                        <td>סטודיו יוגה</td>
+                        <td><span class="status-badge status-completed">מוכן ✅</span></td>
+                        <td>
+                            <div class="priority-badge priority-3">
+                                ★★★☆☆ בינוני
+                            </div>
+                        </td>
+                        <td><span class="price">₪1,900</span></td>
+                        <td><code>yoga-studio.html</code></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-text">100% + לוח זמנים</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-view">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn btn-edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="category-cell">
+                                <div class="category-icon medical">
+                                    <i class="fas fa-apple-alt"></i>
+                                </div>
+                                <span>תזונה קלינית</span>
+                            </div>
+                        </td>
+                        <td><strong>ד"ר שרה כהן</strong></td>
+                        <td>תזונאית קלינית</td>
+                        <td><span class="status-badge status-completed">מוכן ✅</span></td>
+                        <td>
+                            <div class="priority-badge priority-4">
+                                ★★★★☆ גבוה
+                            </div>
+                        </td>
+                        <td><span class="price">₪2,400</span></td>
+                        <td><code>nutritionist.html</code></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-text">100% + 4 מחשבונים</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-view">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn btn-edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="category-cell">
+                                <div class="category-icon legal">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <span>שירותים משפטיים</span>
+                            </div>
+                        </td>
+                        <td><strong>משרד ברקוביץ</strong></td>
+                        <td>עורכי דין</td>
+                        <td><span class="status-badge status-completed">מוכן ✅</span></td>
+                        <td>
+                            <div class="priority-badge priority-4">
+                                ★★★★☆ גבוה
+                            </div>
+                        </td>
+                        <td><span class="price">₪2,500</span></td>
+                        <td><code>law-firm.html</code></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-text">100% + מחשבון פיצויים</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-view">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn btn-edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="category-cell">
+                                <div class="category-icon finance">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <span>חשבונאות ושכר</span>
+                            </div>
+                        </td>
+                        <td><strong>רינה לוי</strong></td>
+                        <td>חשבת שכר</td>
+                        <td><span class="status-badge status-completed">מוכן ✅</span></td>
+                        <td>
+                            <div class="priority-badge priority-3">
+                                ★★★☆☆ בינוני
+                            </div>
+                        </td>
+                        <td><span class="price">₪2,000</span></td>
+                        <td><code>accountant.html</code></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-text">100% + מחשבוני שכר</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-view">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn btn-edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="category-cell">
+                                <div class="category-icon beauty">
+                                    <i class="fas fa-cut"></i>
+                                </div>
+                                <span>יופי ועיצוב</span>
+                            </div>
+                        </td>
+                        <td><strong>מספרה BELLA</strong></td>
+                        <td>מספרה</td>
+                        <td><span class="status-badge status-completed">מוכן ✅</span></td>
+                        <td>
+                            <div class="priority-badge priority-3">
+                                ★★★☆☆ בינוני
+                            </div>
+                        </td>
+                        <td><span class="price">₪1,700</span></td>
+                        <td><code>bella-salon.html</code></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-text">100% + הזמנת תורים</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-view">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn btn-edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="category-cell">
+                                <div class="category-icon education">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <span>חינוך והוראה</span>
+                            </div>
+                        </td>
+                        <td><strong>ד"ר רונית לוי</strong></td>
+                        <td>מורה פרטית</td>
+                        <td><span class="status-badge status-completed">מוכן ✅</span></td>
+                        <td>
+                            <div class="priority-badge priority-4">
+                                ★★★★☆ גבוה
+                            </div>
+                        </td>
+                        <td><span class="price">₪2,100</span></td>
+                        <td><code>teacher-ronit.html</code></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-text">100% - 5 דפים + מאמרים</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-view">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn btn-edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="background: rgba(245, 158, 11, 0.05);">
+                        <td>
+                            <div class="category-cell">
+                                <div class="category-icon medical">
+                                    <i class="fas fa-syringe"></i>
+                                </div>
+                                <span>אסתטיקה רפואית</span>
+                            </div>
+                        </td>
+                        <td><strong>קליניקת יופי פרמיום</strong></td>
+                        <td>מרפאה אסתטית</td>
+                        <td><span class="status-badge status-progress">בעבודה 🔄</span></td>
+                        <td>
+                            <div class="priority-badge priority-5">
+                                ★★★★★ קריטי! 🔥
+                            </div>
+                        </td>
+                        <td><span class="price">₪3,200</span></td>
+                        <td><code>aesthetic-clinic.html</code></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                            <div class="progress-text">75% - דורש השלמה</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-edit">
+                                    <i class="fas fa-hammer"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="background: rgba(220, 38, 38, 0.05);">
+                        <td>
+                            <div class="category-cell">
+                                <div class="category-icon tourism">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <span>נופש ואירועים</span>
+                            </div>
+                        </td>
+                        <td><strong>מולטיבראון</strong></td>
+                        <td>חברת נופש</td>
+                        <td><span class="status-badge status-fix">צריך תיקון ⚠️</span></td>
+                        <td>
+                            <div class="priority-badge priority-3">
+                                ★★★☆☆ בינוני
+                            </div>
+                        </td>
+                        <td><span class="price">₪2,300</span></td>
+                        <td><code>multibrawn.html</code></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
+                            <div class="progress-text">85% - צריך תיקונים</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-edit">
+                                    <i class="fas fa-wrench"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="background: rgba(59, 130, 246, 0.05);">
+                        <td>
+                            <div class="category-cell">
+                                <div class="category-icon real-estate">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <span>נדל"ן</span>
+                            </div>
+                        </td>
+                        <td><strong>נדל"ן פרמיום</strong></td>
+                        <td>מתווך נדל"ן</td>
+                        <td><span class="status-badge status-planned">מתוכנן 📋</span></td>
+                        <td>
+                            <div class="priority-badge priority-4">
+                                ★★★★☆ יוקרתי
+                            </div>
+                        </td>
+                        <td><span class="price">₪2,700</span></td>
+                        <td><code>real-estate.html</code></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-text">0% - טרם התחיל</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-view">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="background: rgba(59, 130, 246, 0.05);">
+                        <td>
+                            <div class="category-cell">
+                                <div class="category-icon medical">
+                                    <i class="fas fa-tooth"></i>
+                                </div>
+                                <span>רפואת שיניים</span>
+                            </div>
+                        </td>
+                        <td><strong>ד"ר יוסי כהן</strong></td>
+                        <td>רופא שיניים</td>
+                        <td><span class="status-badge status-planned">מתוכנן 📋</span></td>
+                        <td>
+                            <div class="priority-badge priority-4">
+                                ★★★★☆ יציב
+                            </div>
+                        </td>
+                        <td><span class="price">₪2,600</span></td>
+                        <td><code>dentist.html</code></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-text">0% - טרם התחיל</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-view">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-  <main>
-    <section id="home" tabindex="0" aria-label="דף הבית - חווית נופש ואירועים">
-      <div class="container">
-        <h1>חוויית נופש <br /> ואירועים בלתי נשכחים</h1>
-        <p>מולטיבראון - יוצרים זכרונות לכל החיים עם שירות אישי ומקצועי.</p>
-        <button id="contact-now-btn" aria-label="צרו קשר עכשיו">צרו קשר עכשיו</button>
-      </div>
-    </section>
+    <!-- Technology Stack Table -->
+    <div class="table-container">
+        <div class="table-header">
+            <div>
+                <div class="table-title">
+                    <i class="fas fa-code"></i>
+                    סטק טכנולוגי
+                </div>
+                <div class="table-subtitle">תשתיות ופלטפורמות טכנולוגיות</div>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>קטגוריה</th>
+                        <th>טכנולוגיה</th>
+                        <th>גרסה</th>
+                        <th>תכונות</th>
+                        <th>סטטוס</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Frontend</td>
+                        <td><strong>HTML5</strong></td>
+                        <td>Latest</td>
+                        <td>
+                            <div class="tech-features">
+                                <span class="feature-tag primary">סמנטי</span>
+                                <span class="feature-tag">SEO אופטימלי</span>
+                                <span class="feature-tag">נגישות</span>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-completed">פעיל</span></td>
+                    </tr>
+                    <tr>
+                        <td>Styling</td>
+                        <td><strong>CSS3</strong></td>
+                        <td>Latest</td>
+                        <td>
+                            <div class="tech-features">
+                                <span class="feature-tag primary">Grid/Flexbox</span>
+                                <span class="feature-tag">Variables</span>
+                                <span class="feature-tag">אנימציות</span>
+                                <span class="feature-tag">Glass Morphism</span>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-completed">פעיל</span></td>
+                    </tr>
+                    <tr>
+                        <td>Scripting</td>
+                        <td><strong>JavaScript Vanilla</strong></td>
+                        <td>ES6+</td>
+                        <td>
+                            <div class="tech-features">
+                                <span class="feature-tag primary">אינטראקטיביות</span>
+                                <span class="feature-tag">DOM מניפולציה</span>
+                                <span class="feature-tag">API calls</span>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-completed">פעיל</span></td>
+                    </tr>
+                    <tr>
+                        <td>Icons</td>
+                        <td><strong>Font Awesome</strong></td>
+                        <td>6.4.0</td>
+                        <td>
+                            <div class="tech-features">
+                                <span class="feature-tag">2,000+ אייקונים</span>
+                                <span class="feature-tag">וקטורי</span>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-completed">פעיל</span></td>
+                    </tr>
+                    <tr>
+                        <td>Fonts</td>
+                        <td><strong>Google Fonts</strong></td>
+                        <td>Latest</td>
+                        <td>
+                            <div class="tech-features">
+                                <span class="feature-tag primary">עברית</span>
+                                <span class="feature-tag">אנגלית</span>
+                                <span class="feature-tag">מהיר</span>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-completed">פעיל</span></td>
+                    </tr>
+                    <tr>
+                        <td>Hosting</td>
+                        <td><strong>Netlify</strong></td>
+                        <td>Pro</td>
+                        <td>
+                            <div class="tech-features">
+                                <span class="feature-tag primary">CDN גלובלי</span>
+                                <span class="feature-tag">SSL חינמי</span>
+                                <span class="feature-tag">Git Integration</span>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-completed">פעיל</span></td>
+                    </tr>
+                    <tr>
+                        <td>Images</td>
+                        <td><strong>PostImages CDN</strong></td>
+                        <td>Latest</td>
+                        <td>
+                            <div class="tech-features">
+                                <span class="feature-tag success">אמין</span>
+                                <span class="feature-tag">מהיר</span>
+                                <span class="feature-tag">חינמי</span>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-completed">פעיל</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <section id="services" aria-label="השירותים שלנו" class="container">
-      <h2>השירותים שלנו</h2>
-      <p>מגוון חוויות נופש ואירועים בהתאמה אישית בדיוק בשבילך.</p>
-      <div class="services-grid" role="list">
-        <article class="service-card" role="listitem" tabindex="0" aria-label="אירועים בלתי נשכחים">
-          <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2l3 7h7l-5.5 4 2 7-6-4-6 4 2-7L2 9h7l3-7z"/>
-          </svg>
-          <h3 class="service-title">אירועים בלתי נשכחים</h3>
-          <p class="service-desc">תכנון והפקת אירועים מיוחדים בכל הגדלים – חתונות, בריתות, כנסים וחגיגות פרטיות.</p>
-        </article>
-        <article class="service-card" role="listitem" tabindex="0" aria-label="חופשות יוקרה">
-          <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 13l4 4L19 7"/>
-          </svg>
-          <h3 class="service-title">חופשות יוקרה</h3>
-          <p class="service-desc">אירוח מושלם במלונות ובווילות נבחרות, עם חוויות מותאמות אישית לכל לקוח.</p>
-        </article>
-        <article class="service-card" role="listitem" tabindex="0" aria-label="סיורים והרפתקאות">
-          <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M8 12l2 2 4-4"/>
-          </svg>
-          <h3 class="service-title">סיורים והרפתקאות</h3>
-          <p class="service-desc">טיולי טבע, סיורים קולינריים והרפתקאות בלתי נשכחות ברחבי הארץ והעולם.</p>
-        </article>
-      </div>
-    </section>
+    <!-- Business Model Table -->
+    <div class="table-container">
+        <div class="table-header">
+            <div>
+                <div class="table-title">
+                    <i class="fas fa-chart-line"></i>
+                    מודל עסקי ורווחיות
+                </div>
+                <div class="table-subtitle">הכנסות, עלויות ותחזיות</div>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>קטגוריה</th>
+                        <th>פריט</th>
+                        <th>תיאור</th>
+                        <th>סכום</th>
+                        <th>תדירות</th>
+                        <th>הערות</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: rgba(5, 150, 105, 0.05);">
+                        <td rowspan="5" style="background: rgba(5, 150, 105, 0.1); font-weight: 700; color: var(--success);">הכנסות</td>
+                        <td><strong>אתרים בסיסיים</strong></td>
+                        <td>מספרה, יוגה, חשבת שכר</td>
+                        <td><span class="price">₪1,700-2,200</span></td>
+                        <td>חד פעמי</td>
+                        <td>התחלת פעילות</td>
+                    </tr>
+                    <tr style="background: rgba(5, 150, 105, 0.05);">
+                        <td><strong>אתרים מתקדמים</strong></td>
+                        <td>כושר, תזונה, חינוך</td>
+                        <td><span class="price">₪2,100-2,500</span></td>
+                        <td>חד פעמי</td>
+                        <td>פונקציונליות נוספת</td>
+                    </tr>
+                    <tr style="background: rgba(5, 150, 105, 0.05);">
+                        <td><strong>אתרים פרמיום</strong></td>
+                        <td>רפואה, משפט, נדל"ן</td>
+                        <td><span class="price">₪2,600-3,200</span></td>
+                        <td>חד פעמי</td>
+                        <td>תחומים יוקרתיים</td>
+                    </tr>
+                    <tr style="background: rgba(5, 150, 105, 0.05);">
+                        <td><strong>התאמות אישיות</strong></td>
+                        <td>שינויים ותוספות</td>
+                        <td><span class="price">₪300-1,000</span></td>
+                        <td>לפי בקשה</td>
+                        <td>עבודה נוספת</td>
+                    </tr>
+                    <tr style="background: rgba(5, 150, 105, 0.05);">
+                        <td><strong>תחזוקה חודשית</strong></td>
+                        <td>עדכונים ותמיכה</td>
+                        <td><span class="price">₪150-300</span></td>
+                        <td>חודשי</td>
+                        <td>הכנסה קבועה</td>
+                    </tr>
+                    <tr style="background: rgba(220, 38, 38, 0.05);">
+                        <td rowspan="5" style="background: rgba(220, 38, 38, 0.1); font-weight: 700; color: var(--error);">עלויות</td>
+                        <td><strong>אחסון Netlify Pro</strong></td>
+                        <td>100GB + CDN + SSL</td>
+                        <td><span class="cost-amount">$19</span></td>
+                        <td>חודשי</td>
+                        <td>~₪65/חודש</td>
+                    </tr>
+                    <tr style="background: rgba(220, 38, 38, 0.05);">
+                        <td><strong>דומיינים</strong></td>
+                        <td>.co.il או .com</td>
+                        <td><span class="cost-amount">₪50</span></td>
+                        <td>שנתי</td>
+                        <td>לכל אתר</td>
+                    </tr>
+                    <tr style="background: rgba(220, 38, 38, 0.05);">
+                        <td><strong>כלי עיצוב</strong></td>
+                        <td>Canva Pro + Font Awesome</td>
+                        <td><span class="cost-amount">₪45</span></td>
+                        <td>חודשי</td>
+                        <td>יצירת תוכן</td>
+                    </tr>
+                    <tr style="background: rgba(220, 38, 38, 0.05);">
+                        <td><strong>CDN ותמונות</strong></td>
+                        <td>PostImages + Cloudflare</td>
+                        <td><span class="cost-amount">₪30</span></td>
+                        <td>חודשי</td>
+                        <td>אופציונלי</td>
+                    </tr>
+                    <tr style="background: rgba(220, 38, 38, 0.05);">
+                        <td><strong>שיווק דיגיטלי</strong></td>
+                        <td>Google Ads + Facebook</td>
+                        <td><span class="cost-amount">₪200</span></td>
+                        <td>חודשי</td>
+                        <td>לקידום מכירות</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <section id="testimonials" aria-label="המלצות" class="container">
-      <h2>המלצות</h2>
-      <div class="testimonials-grid">
-        <blockquote class="testimonial-card" tabindex="0" aria-label="המלצה מגלית">
-          “מולטיבראון הפכה את יום האירוע שלנו לחוויה קסומה ובלתי נשכחת! שירות מדהים ומקצועיות ללא פשרות.”
-          <footer class="testimonial-author">- גלית ל.</footer>
-        </blockquote>
-        <blockquote class="testimonial-card" tabindex="0" aria-label="המלצה מירון">
-          “החופשה האחרונה שלנו במולטיבראון הייתה פשוט מושלמת, עם תכנון מותאם אישית ויחס חם ואוהב.”
-          <footer class="testimonial-author">- מירון ק.</footer>
-        </blockquote>
-        <blockquote class="testimonial-card" tabindex="0" aria-label="המלצה מדורון">
-          “אני ממליץ בחום על מולטיבראון לכל מי שרוצה חופשה או אירוע ברמה הגבוהה ביותר.”
-          <footer class="testimonial-author">- דורון ש.</footer>
-        </blockquote>
-      </div>
-    </section>
+    <!-- Timeline & Roadmap -->
+    <div class="table-container">
+        <div class="table-header">
+            <div>
+                <div class="table-title">
+                    <i class="fas fa-map-marked-alt"></i>
+                    תכנית פיתוח ולוח זמנים
+                </div>
+                <div class="table-subtitle">3 שלבים לצמיחה עסקית</div>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table class="timeline-table">
+                <thead>
+                    <tr>
+                        <th>שלב</th>
+                        <th>תקופה</th>
+                        <th>יעדים עיקריים</th>
+                        <th>תוצרים</th>
+                        <th>הכנסות צפויות</th>
+                        <th>סטטוס</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: rgba(5, 150, 105, 0.1);">
+                        <td><strong>שלב 1 - ביסוס</strong></td>
+                        <td class="timeline-date">ינואר-מרץ 2025</td>
+                        <td>
+                            • השלמת 12 דמואים<br>
+                            • 5-10 לקוחות ראשונים<br>
+                            • מותג מוכר מקומית
+                        </td>
+                        <td>
+                            • אסתטיקה רפואית<br>
+                            • נדל"ן פרמיום<br>
+                            • רופא שיניים<br>
+                            • מערכת CRM בסיסית
+                        </td>
+                        <td><span class="price">₪15,000-25,000</span></td>
+                        <td>
+                            <span class="status-badge status-progress">פעיל 🔄</span>
+                            <div class="timeline-status">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 70%"></div>
+                                </div>
+                                <div class="progress-text">70% הושלם</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="background: rgba(37, 99, 235, 0.1);">
+                        <td><strong>שלב 2 - הרחבה</strong></td>
+                        <td class="timeline-date">אפריל-יוני 2025</td>
+                        <td>
+                            • אדיטור ויזואלי מלא<br>
+                            • 20+ תבניות מוכנות<br>
+                            • פרטנרויות עסקיות
+                        </td>
+                        <td>
+                            • אדיטור דראג-אנד-דרופ<br>
+                            • מערכת תשלומים<br>
+                            • אפליקציית ניהול<br>
+                            • 10 תחומים חדשים
+                        </td>
+                        <td><span class="price">₪40,000-70,000</span></td>
+                        <td>
+                            <span class="status-badge status-planned">מתוכנן 📋</span>
+                            <div class="timeline-status">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="progress-text">מחכה לתחילת שלב 1</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="background: rgba(245, 158, 11, 0.1);">
+                        <td><strong>שלב 3 - קנה מידה</strong></td>
+                        <td class="timeline-date">יולי-דצמבר 2025</td>
+                        <td>
+                            • פלטפורמה עצמאית<br>
+                            • 100+ לקוחות פעילים<br>
+                            • צוות 3-5 עובדים
+                        </td>
+                        <td>
+                            • SaaS פלטפורמה<br>
+                            • מערכת שותפויות<br>
+                            • API למפתחים<br>
+                            • בינלאומיזציה
+                        </td>
+                        <td><span class="price">₪150,000-300,000</span></td>
+                        <td>
+                            <span class="status-badge status-planned">חזון 🚀</span>
+                            <div class="timeline-status">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="progress-text">תלוי בהצלחת השלבים הקודמים</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <section id="gallery" aria-label="גלריית תמונות" class="container">
-      <h2>גלריה</h2>
-      <div class="gallery-grid">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=70" alt="נופש חופים" tabindex="0" />
-        <img src="https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=800&q=70" alt="אירוע חתונה" tabindex="0" />
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=70" alt="טיול בטבע" tabindex="0" />
-        <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=70" alt="אירוע חברה" tabindex="0" />
-      </div>
-    </section>
+    <!-- Summary Cards -->
+    <div class="summary-grid">
+        <div class="summary-card">
+            <h3>💰 ריכוז פיננסי</h3>
+            <div class="revenue-item">
+                <span class="revenue-source">סה"כ ערך אתרים מוכנים</span>
+                <span class="revenue-amount">₪18,700</span>
+            </div>
+            <div class="revenue-item">
+                <span class="revenue-source">סה"כ ערך כל האתרים</span>
+                <span class="revenue-amount">₪25,300</span>
+            </div>
+            <div class="revenue-item">
+                <span class="revenue-source">עלות תפעול חודשית</span>
+                <span class="cost-amount">₪340</span>
+            </div>
+            <div class="revenue-item">
+                <span class="revenue-source">מרווח רווח צפוי</span>
+                <span class="revenue-amount">85%+</span>
+            </div>
+            <div class="key-metric">ROI חודש ראשון: 600%</div>
+        </div>
 
-    <section id="about" aria-label="אודות מולטיבראון" class="container">
-      <h2>אודות מולטיבראון</h2>
-      <p>
-        מולטיבראון הוקמה מתוך תשוקה ליצור חוויות נופש ואירועים בלתי נשכחים ללקוחותינו.
-        אנו מבטיחים ללוות אתכם לאורך כל התהליך, ליצור אווירה קסומה ויחודית, ולהפוך כל אירוע וחופשה
-        לזיכרון מתוק שילך אתכם לאורך זמן.
-      </p>
-      <p>
-        אצלנו השירות, המקצועיות והאהבה למה שאנחנו עושים עומדים במרכז.
-        נשמח להפוך את החלום שלכם למציאות בלתי נשכחת.
-      </p>
-    </section>
+        <div class="summary-card">
+            <h3>📊 מדדי ביצוע</h3>
+            <div class="revenue-item">
+                <span class="revenue-source">אתרים מוכנים לייצור</span>
+                <span class="revenue-amount">8/11</span>
+            </div>
+            <div class="revenue-item">
+                <span class="revenue-source">תחומי התמחות</span>
+                <span class="revenue-amount">8</span>
+            </div>
+            <div class="revenue-item">
+                <span class="revenue-source">זמן פיתוח ממוצע</span>
+                <span class="revenue-amount">2-3 ימים</span>
+            </div>
+            <div class="revenue-item">
+                <span class="revenue-source">איכות טכנית</span>
+                <span class="revenue-amount">95%+</span>
+            </div>
+            <div class="key-metric">מוכנות לשוק: 100%</div>
+        </div>
 
-    <section id="contact" aria-label="טופס צור קשר" class="container">
-      <h2>צור קשר</h2>
-      <form id="contact-form" novalidate>
-        <label for="name">שם מלא</label>
-        <input type="text" id="name" name="name" autocomplete="name" required aria-required="true" aria-describedby="name-error" />
-        <div id="name-error" class="error" aria-live="polite"></div>
+        <div class="summary-card">
+            <h3>🎯 עדיפויות דחופות</h3>
+            <div class="revenue-item">
+                <span class="revenue-source">1. אסתטיקה רפואית</span>
+                <span class="revenue-amount">₪3,200</span>
+            </div>
+            <div class="revenue-item">
+                <span class="revenue-source">2. תיקון מולטיבראון</span>
+                <span class="revenue-amount">₪2,300</span>
+            </div>
+            <div class="revenue-item">
+                <span class="revenue-source">3. נדל"ן פרמיום</span>
+                <span class="revenue-amount">₪2,700</span>
+            </div>
+            <div class="revenue-item">
+                <span class="revenue-source">4. רופא שיניים</span>
+                <span class="revenue-amount">₪2,600</span>
+            </div>
+            <div class="key-metric">פוטנציאל מיידי: ₪10,800</div>
+        </div>
+    </div>
 
-        <label for="email">אימייל</label>
-        <input type="email" id="email" name="email" autocomplete="email" required aria-required="true" aria-describedby="email-error" />
-        <div id="email-error" class="error" aria-live="polite"></div>
+    <script>
+        // Add hover effects and interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate progress bars
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
 
-        <label for="message">הודעה</label>
-        <textarea id="message" name="message" rows="5" required aria-required="true" aria-describedby="message-error"></textarea>
-        <div id="message-error" class="error" aria-live="polite"></div>
+            // Add click handlers for action buttons
+            document.querySelectorAll('.action-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const action = this.classList.contains('btn-view') ? 'צפייה' :
+                                  this.classList.contains('btn-edit') ? 'עריכה' : 'מחיקה';
+                    
+                    // Get website name from the row
+                    const row = this.closest('tr');
+                    const websiteName = row.querySelector('strong').textContent;
+                    
+                    alert(`${action} - ${websiteName}`);
+                });
+            });
 
-        <button type="submit" aria-label="שלח טופס צור קשר">שלח</button>
-        <div id="form-success" class="success-message" aria-live="polite" style="display:none;">תודה שפנית אלינו! נחזור אליך בהקדם.</div>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    &copy; <span id="year"></span> מולטיבראון. כל הזכויות שמורות.
-  </footer>
-
-  <script>
-    // עדכון השנה בדף
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ניווט בין עמודים (כפתורי ניווט)
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const sections = document.querySelectorAll('main section');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const menuToggle = document.querySelector('.menu-toggle');
-
-    function showSection(id) {
-      sections.forEach(sec => {
-        if (sec.id === id) {
-          sec.style.display = 'block';
-          sec.setAttribute('tabindex', '0');
-          sec.focus();
-        } else {
-          sec.style.display = 'none';
-          sec.setAttribute('tabindex', '-1');
-        }
-      });
-
-      navButtons.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.target === id);
-      });
-
-      // אם תפריט נייד פתוח, סוגר אותו לאחר לחיצה
-      if (mobileMenu.classList.contains('active')) {
-        mobileMenu.classList.remove('active');
-      }
-    }
-
-    navButtons.forEach(btn => {
-      btn.addEventListener('click', () => showSection(btn.dataset.target));
-    });
-
-    // הצגה ראשונית - עמוד הבית
-    showSection('home');
-
-    // תפריט נייד
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-    });
-
-    // טופס יצירת קשר - ואלידציה בסיסית ושליחה מדומה
-    const form = document.getElementById('contact-form');
-    const nameInput = form.name;
-    const emailInput = form.email;
-    const messageInput = form.message;
-    const nameError = document.getElementById('name-error');
-    const emailError = document.getElementById('email-error');
-    const messageError = document.getElementById('message-error');
-    const formSuccess = document.getElementById('form-success');
-
-    function validateEmail(email) {
-      // בדיקת אימייל בסיסית
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      let valid = true;
-      nameError.textContent = '';
-      emailError.textContent = '';
-      messageError.textContent = '';
-      formSuccess.style.display = 'none';
-
-      if (!nameInput.value.trim()) {
-        nameError.textContent = 'יש להזין שם מלא';
-        valid = false;
-      }
-      if (!emailInput.value.trim()) {
-        emailError.textContent = 'יש להזין כתובת אימייל';
-        valid = false;
-      } else if (!validateEmail(emailInput.value.trim())) {
-        emailError.textContent = 'כתובת אימייל לא חוקית';
-        valid = false;
-      }
-      if (!messageInput.value.trim()) {
-        messageError.textContent = 'יש להזין הודעה';
-        valid = false;
-      }
-
-      if (!valid) return;
-
-      // כאן ניתן להוסיף שליחת נתונים לשרת / API אמיתי
-
-      // סימולציה של הצלחה
-      formSuccess.style.display = 'block';
-      form.reset();
-    });
-
-    // תמיכה במקש אנטר בטפסים - לא שולח לפני כל שדה תקין
-    [nameInput, emailInput, messageInput].forEach(input => {
-      input.addEventListener('input', () => {
-        if (input === nameInput && nameError.textContent) nameError.textContent = '';
-        if (input === emailInput && emailError.textContent) emailError.textContent = '';
-        if (input === messageInput && messageError.textContent) messageError.textContent = '';
-      });
-    });
-
-    // כפתור צור קשר מהעמוד הראשי מוביל לטופס
-    document.getElementById('contact-now-btn').addEventListener('click', () => {
-      showSection('contact');
-      window.scrollTo({top:0, behavior:'smooth'});
-    });
-  </script>
+            // Add table sorting functionality
+            document.querySelectorAll('th').forEach(header => {
+                header.style.cursor = 'pointer';
+                header.addEventListener('click', function() {
+                    // Simple visual feedback
+                    this.style.background = '#e2e8f0';
+                    setTimeout(() => {
+                        this.style.background = '#f8fafc';
+                    }, 200);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
