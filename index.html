@@ -1,163 +1,455 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Real Mute – Practice Silently, Perform Powerfully</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f8f8f8;
-      color: #333;
-    }
-    header {
-      background: #111;
-      color: #fff;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.8em;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 1.2em;
-    }
-    .section {
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    .features, .testimonials, .faq {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .feature, .testimonial, .faq-item {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    }
-    .cta {
-      text-align: center;
-      background: #ffe600;
-      padding: 40px 20px;
-    }
-    .cta h2 {
-      margin-bottom: 10px;
-    }
-    .cta a.button {
-      display: inline-block;
-      background: #111;
-      color: #fff;
-      padding: 14px 28px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      margin-top: 15px;
-    }
-    .cta a.whatsapp {
-      display: inline-block;
-      margin-top: 10px;
-      color: #25D366;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .video-wrapper {
-      text-align: center;
-      margin-top: 40px;
-    }
-    iframe {
-      width: 100%;
-      max-width: 720px;
-      height: 405px;
-      border: none;
-      border-radius: 12px;
-    }
-    footer {
-      background: #111;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סטודיו נויה - עיצוב פנים יוקרתי</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header { background: #fff; padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 2rem; font-weight: bold; color: #8b5cf6; }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav a { text-decoration: none; color: #333; font-weight: 500; }
+        nav a:hover { color: #8b5cf6; }
+        .contact-btn { background: #8b5cf6; color: white; padding: 0.5rem 1rem; border-radius: 25px; text-decoration: none; }
+        
+        /* Hero */
+        .hero { background: linear-gradient(rgba(139,92,246,0.9), rgba(59,130,246,0.8)), url('https://i.imghippo.com/files/sYOd2887hwk.png'); background-size: cover; background-position: center; min-height: 100vh; display: flex; align-items: center; color: white; text-align: center; margin-top: 80px; }
+        .hero-title { font-size: 3rem; margin-bottom: 1rem; }
+        .hero-subtitle { font-size: 1.2rem; margin-bottom: 2rem; }
+        .hero-btn { background: white; color: #8b5cf6; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: bold; margin: 0 1rem; }
+        .hero-image { max-width: 500px; margin-top: 2rem; border-radius: 20px; }
+        
+        /* Sections */
+        .section { padding: 4rem 0; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #333; }
+        
+        /* About */
+        .about { background: #f8f9fa; }
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .about-img { width: 100%; height: 400px; object-fit: cover; border-radius: 20px; }
+        
+        /* Services */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .service-card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
+        .service-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem; }
+        .service-price { font-size: 1.5rem; color: #8b5cf6; font-weight: bold; margin-top: 1rem; }
+        
+        /* Portfolio */
+        .portfolio { background: #f8f9fa; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .portfolio-item { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .portfolio-img { width: 100%; height: 300px; object-fit: cover; }
+        .portfolio-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 2rem; }
+        
+        /* Testimonials */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .testimonial-card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
+        .testimonial-avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1rem; object-fit: cover; }
+        .stars { color: #f59e0b; margin-bottom: 1rem; }
+        
+        /* Contact */
+        .contact { background: #f8f9fa; }
+        .contact-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .contact-form { background: white; padding: 2rem; border-radius: 20px; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 10px; }
+        .submit-btn { background: #8b5cf6; color: white; padding: 1rem 2rem; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; }
+        .whatsapp-btn { background: #25d366; color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; margin-top: 1rem; display: inline-block; }
+        
+        /* Footer */
+        footer { background: #333; color: white; padding: 3rem 0; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .footer-bottom { text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #555; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hero-title { font-size: 2rem; }
+            .about-content, .contact-content { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">סטודיו נויה</div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">אודות</a></li>
+                        <li><a href="#services">שירותים</a></li>
+                        <li><a href="#portfolio">פורטפוליו</a></li>
+                        <li><a href="#contact">צור קשר</a></li>
+                    </ul>
+                </nav>
+                <a href="#contact" class="contact-btn">יצירת קשר</a>
+            </div>
+        </div>
+    </header>
 
-<header>
-  <h1>Real Mute – Practice Silently, Perform Powerfully</h1>
-  <p>Cut 50+ decibels. Keep perfect pitch. Feel the real sound – anywhere.</p>
-</header>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">יוצרים חללים שמשנים חיים</h1>
+            <p class="hero-subtitle">מתמחים בעיצוב פנים יוקרתי ומקצועי עם ניסיון של מעל 15 שנה</p>
+            <a href="#portfolio" class="hero-btn">צפה בעבודות</a>
+            <a href="#contact" class="hero-btn">קבע פגישה</a>
+            <br><img src="https://i.imghippo.com/files/wxV2916aak.png" alt="עיצוב פנים יוקרתי" class="hero-image">
+        </div>
+    </section>
 
-<div class="video-wrapper">
-  <iframe src="https://www.youtube.com/embed/mi_P62LOYqQ" title="REAL MUTE Demo Video" allowfullscreen></iframe>
-</div>
+    <!-- About -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">אודות סטודיו נויה</h2>
+            <div class="about-content">
+                <div>
+                    <h3>הגישה שלנו לעיצוב</h3>
+                    <p>אנחנו מאמינים שכל בית מספר סיפור ייחודי. הגישה שלנו מתבססת על הבנה עמוקה של צרכי הלקוח, שילוב של פונקציונליות עם יופי אסתטי.</p>
+                    <p>אנחנו עובדים עם חומרי הגלם הטובים ביותר כדי להבטיח תוצאה מושלמת שתעמוד במבחן הזמן.</p>
+                </div>
+                <img src="https://i.imghippo.com/files/zmE5570pk.png" alt="מטבח יוקרתי" class="about-img">
+            </div>
+        </div>
+    </section>
 
-<section class="section">
-  <div class="features">
-    <div class="feature">
-      <h2>🔇 Ultra Quiet</h2>
-      <p>Reduces your volume from 110 dB to just 60 dB – perfect for late-night practice, small rooms, or travel.</p>
-    </div>
-    <div class="feature">
-      <h2>🎯 True Intonation</h2>
-      <p>Unlike traditional mutes, Real Mute keeps your tone and pitch accurate across all registers.</p>
-    </div>
-    <div class="feature">
-      <h2>🛫 Travel-Ready</h2>
-      <p>Only 10mm thin – fits in any case. Practice anywhere without disturbing anyone.</p>
-    </div>
-    <div class="feature">
-      <h2>✅ Trusted by the Pros</h2>
-      <p>Used by world-class musicians like Avishai Cohen and Arturo Sandoval.</p>
-    </div>
-  </div>
-</section>
+    <!-- Services -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">השירותים שלנו</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://i.imghippo.com/files/YS1138arI.png" alt="עיצוב סלונים" class="service-img">
+                    <h3>עיצוב סלונים</h3>
+                    <p>יצירת סלונים מרווחים ומזמינים שמשקפים את האישיות שלכם</p>
+                    <div class="service-price">החל מ-₪25,000</div>
+                </div>
+                <div class="service-card">
+                    <img src="https://i.imghippo.com/files/wn3007S.png" alt="עיצוב מטבחים" class="service-img">
+                    <h3>עיצוב מטבחים</h3>
+                    <p>מטבחים פונקציונליים ויפים שמשלבים טכנולוגיה מתקדמת</p>
+                    <div class="service-price">החל מ-₪35,000</div>
+                </div>
+                <div class="service-card">
+                    <img src="https://i.imghippo.com/files/biG2738dVA.png" alt="עיצוב חדרי שינה" class="service-img">
+                    <h3>עיצוב חדרי שינה</h3>
+                    <p>חדרי שינה רגועים ומזמינים שיוצרים אטמוספירה של שלווה</p>
+                    <div class="service-price">החל מ-₪18,000</div>
+                </div>
+                <div class="service-card">
+                    <img src="https://i.imghippo.com/files/bwx3700PtU.png" alt="עיצוב משרדים" class="service-img">
+                    <h3>עיצוב משרדים</h3>
+                    <p>משרדים מקצועיים שמעודדים יצירתיות ופרודוקטיביות</p>
+                    <div class="service-price">החל מ-₪30,000</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="section testimonials">
-  <h2>🎺 What Musicians Say</h2>
-  <div class="testimonial">
-    <strong>"Finally a mute that feels like the real thing!"</strong>
-    <p>– Daniel R., Jazz Trumpeter</p>
-  </div>
-  <div class="testimonial">
-    <strong>"I can practice in hotels and apartments without losing tone or power."</strong>
-    <p>– Sarah T., Touring Musician</p>
-  </div>
-</section>
+    <!-- Portfolio -->
+    <section id="portfolio" class="section portfolio">
+        <div class="container">
+            <h2 class="section-title">21 פרויקטים מרהיבים שהשלמנו</h2>
+            <div class="portfolio-grid">
+                <!-- תמונה 1 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/sYOd2887hwk.png" alt="סלון יוקרתי מודרני" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>סלון יוקרתי מודרני</h3>
+                        <p>עיצוב מינימליסטי עם נגיעות זהב</p>
+                    </div>
+                </div>
+                <!-- תמונה 2 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/wxV2916aak.png" alt="עיצוב פנים אלגנטי" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>עיצוב פנים אלגנטי</h3>
+                        <p>שילוב מושלם של יוקרה ונוחות</p>
+                    </div>
+                </div>
+                <!-- תמונה 3 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/zmE5570pk.png" alt="מטבח יוקרתי מעוצב" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>מטבח יוקרתי מעוצב</h3>
+                        <p>פונקציונליות מתקדמת ועיצוב מרהיב</p>
+                    </div>
+                </div>
+                <!-- תמונה 4 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/fQvz7289bc.png" alt="דירה ברמת השרון" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>דירה ברמת השרון</h3>
+                        <p>סלון מודרני ויוקרתי</p>
+                    </div>
+                </div>
+                <!-- תמונה 5 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/JRo3876Gs.png" alt="משרדי הייטק" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>משרדי הייטק</h3>
+                        <p>עיצוב טכנולוגי חדשני</p>
+                    </div>
+                </div>
+                <!-- תמונה 6 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/ICjz7749xy.png" alt="בוטיק תל אביב" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>בוטיק תל אביב</h3>
+                        <p>עיצוב מסחרי אלגנטי</p>
+                    </div>
+                </div>
+                <!-- תמונה 7 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/mWL6327pc.png" alt="פנטהאוס הרצליה" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>פנטהאוס הרצליה</h3>
+                        <p>עיצוב יוקרתי עם נוף לים</p>
+                    </div>
+                </div>
+                <!-- תמונה 8 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/pBud7581GU.png" alt="לקוחה מרוצה" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>לקוחה מרוצה</h3>
+                        <p>עיצוב דירה פרטית מושלם</p>
+                    </div>
+                </div>
+                <!-- תמונה 9 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/lBB1127O.png" alt="לקוחה מחייכת" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>לקוחה מחייכת</h3>
+                        <p>פרויקט עיצוב משרד הצליח</p>
+                    </div>
+                </div>
+                <!-- תמונה 10 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/dm3112IDI.png" alt="לקוח מרוצה" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>לקוח מרוצה</h3>
+                        <p>שיפוץ בית כפרי מרהיב</p>
+                    </div>
+                </div>
+                <!-- תמונה 11 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/YS1138arI.png" alt="עיצוב סלון מודרני" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>עיצוב סלון מודרני</h3>
+                        <p>פרויקט סלון יוקרתי בתל אביב</p>
+                    </div>
+                </div>
+                <!-- תמונה 12 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/wn3007S.png" alt="עיצוב מטבח מודרני" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>עיצוב מטבח מודרני</h3>
+                        <p>מטבח פונקציונלי ויפהפה</p>
+                    </div>
+                </div>
+                <!-- תמונה 13 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/biG2738dVA.png" alt="עיצוב חדר שינה" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>עיצוב חדר שינה</h3>
+                        <p>חדר שינה רומנטי ונעים</p>
+                    </div>
+                </div>
+                <!-- תמונה 14 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/bwx3700PtU.png" alt="עיצוב משרד מקצועי" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>עיצוב משרד מקצועי</h3>
+                        <p>משרד מנהלים יוקרתי</p>
+                    </div>
+                </div>
+                <!-- תמונה 15 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/eoS3409zU.png" alt="וילה בקיסריה" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>וילה בקיסריה</h3>
+                        <p>עיצוב יוקרתי מרהיב</p>
+                    </div>
+                </div>
+                <!-- תמונה 16 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/oqZ8393Gak.png" alt="דירת גג ברמת אביב" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>דירת גג ברמת אביב</h3>
+                        <p>עיצוב מודרני ונקי</p>
+                    </div>
+                </div>
+                <!-- תמונה 17 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/OXOh6805oTw.png" alt="לופט בנווה צדק" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>לופט בנווה צדק</h3>
+                        <p>עיצוב אורבני ייחודי</p>
+                    </div>
+                </div>
+                <!-- תמונה 18 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/Pk3182Ps.png" alt="דירה בגבעתיים" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>דירה בגבעתיים</h3>
+                        <p>עיצוב משפחתי חם</p>
+                    </div>
+                </div>
+                <!-- תמונה 19 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/uIhJ5918Q.png" alt="משרד מנהלים" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>משרד מנהלים</h3>
+                        <p>עיצוב עסקי מקצועי ומרשים</p>
+                    </div>
+                </div>
+                <!-- תמונה 20 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/PLjN5103DFg.png" alt="בעל הבית מרוצה" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>בעל הבית מרוצה</h3>
+                        <p>פרויקט דירה בתל אביב הצליח</p>
+                    </div>
+                </div>
+                <!-- תמונה 21 -->
+                <div class="portfolio-item">
+                    <img src="https://i.imghippo.com/files/yiP9207qMI.png" alt="בית ברעננה" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>בית ברעננה</h3>
+                        <p>עיצוב בית משפחתי מושלם</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="cta">
-  <h2>Ready to Mute Without Compromise?</h2>
-  <p>Use code <strong>FB10</strong> at checkout for 10% OFF + Free Shipping!</p>
-  <a class="button" href="https://www.realmute.com">Order Now</a>
-  <br/>
-  <a class="whatsapp" href="https://wa.me/972501234567" target="_blank">💬 Chat with us on WhatsApp</a>
-</section>
+    <!-- Testimonials -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">המלצות מלקוחות מרוצים</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <img src="https://i.imghippo.com/files/pBud7581GU.png" alt="לקוחה מרוצה" class="testimonial-avatar">
+                    <div class="stars">★★★★★</div>
+                    <p>"נויה עיצבה לנו את הבית החלומי. העיצוב מושלם והתוצאה עלתה על כל הציפיות!"</p>
+                    <h4>משפחת כהן</h4>
+                    <span>רמת השרון</span>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://i.imghippo.com/files/lBB1127O.png" alt="לקוחה מחייכת" class="testimonial-avatar">
+                    <div class="stars">★★★★★</div>
+                    <p>"המקצועיות והיחס האישי הפכו את התהליך לחוויה מהנה. ממליצה בחום!"</p>
+                    <h4>ענת לוי</h4>
+                    <span>תל אביב</span>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://i.imghippo.com/files/PLjN5103DFg.png" alt="בעל הבית מרוצה" class="testimonial-avatar">
+                    <div class="stars">★★★★★</div>
+                    <p>"פתרונות יצירתיים וביצוע מושלם. הבית הפך למרחב מחלומות!"</p>
+                    <h4>דני רוזנברג</h4>
+                    <span>הרצליה</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="section faq">
-  <h2>❓ Frequently Asked Questions</h2>
-  <div class="faq-item">
-    <strong>Does Real Mute work with any trumpet?</strong>
-    <p>Yes – it fits most standard trumpets, cornets, and flugelhorns. Check the model sizing guide on our site.</p>
-  </div>
-  <div class="faq-item">
-    <strong>Is the tone really unaffected?</strong>
-    <p>Yes. Real Mute uses planar sound diffusion to preserve pitch and articulation.</p>
-  </div>
-  <div class="faq-item">
-    <strong>Where do you ship?</strong>
-    <p>We ship worldwide with tracked delivery options.</p>
-  </div>
-</section>
+    <!-- Contact -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">צור קשר</h2>
+            <div class="contact-content">
+                <div>
+                    <h3>פרטי התקשרות</h3>
+                    <p>📞 טלפון: 050-123-4567</p>
+                    <p>✉️ אימייל: info@studio-noya.co.il</p>
+                    <p>📍 כתובת: רחוב הדקל 15, תל אביב</p>
+                    <a href="https://wa.me/972501234567?text=שלום, אני מעוניין/ת בייעוץ לעיצוב פנים" class="whatsapp-btn" target="_blank">שלח הודעה בווטסאפ</a>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="שם מלא *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="טלפון *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="אימייל">
+                    </div>
+                    <div class="form-group">
+                        <select>
+                            <option>בחר סוג פרויקט</option>
+                            <option>עיצוב סלון</option>
+                            <option>עיצוב מטבח</option>
+                            <option>עיצוב חדר שינה</option>
+                            <option>עיצוב משרד</option>
+                            <option>עיצוב בית שלם</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="ספרו לנו על הפרויקט שלכם..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">שלח הודעה</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-<footer>
-  &copy; 2025 RealMute.com – All rights reserved. | Contact: support@realmute.com
-</footer>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>סטודיו נויה</h3>
+                    <p>מתמחים בעיצוב פנים יוקרתי ומקצועי מעל 15 שנה</p>
+                </div>
+                <div>
+                    <h3>שירותים</h3>
+                    <p>עיצוב סלונים</p>
+                    <p>עיצוב מטבחים</p>
+                    <p>עיצוב חדרי שינה</p>
+                    <p>עיצוב משרדים</p>
+                </div>
+                <div>
+                    <h3>קישורים</h3>
+                    <p>אודות</p>
+                    <p>פורטפוליו</p>
+                    <p>המלצות</p>
+                    <p>צור קשר</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 סטודיו נויה - עיצוב פנים יוקרתי. כל הזכויות שמורות.</p>
+                <p>פותח במסגרת פרויקט WebMaster Pro | אתר #12 - ₪2,400</p>
+            </div>
+        </div>
+    </footer>
 
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('תודה! נחזור אליכם בהקדם');
+        });
+
+        console.log('🎨 סטודיו נויה נטען בהצלחה עם כל 21 התמונות!');
+        console.log('💎 אתר #12 ב-WebMaster Pro - ₪2,400');
+    </script>
 </body>
 </html>
